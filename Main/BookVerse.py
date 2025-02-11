@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.neighbors import NearestNeighbors
 import numpy as np
 #Declare the File Path
-file_path = 'C://Users//AjayM//Downloads//Book dataset.xlsx'
+file_path = 'C://Users//AjayM//Downloads//Modified_Book_for_retail_with_harry_potter(2).xlsx'
 
 df = pd.read_excel(file_path)
 average_ratings = df.groupby(['Book_ID', 'Genre'])['Rating'].mean().reset_index()
@@ -12,7 +12,6 @@ X = pd.concat([average_ratings[['Book_ID', 'Average_Rating']], genre_dummies], a
 def recommend_books_by_genre_ml(genre, num_recommendations=5):
     genre_books = average_ratings[average_ratings['Genre'] == genre]
     
-
     if genre_books.empty:
         print(f"No books found for genre '{genre}'.")
         return pd.DataFrame(columns=['Book_ID', 'Average_Rating'])
